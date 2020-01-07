@@ -1,5 +1,6 @@
 package com.fju.member;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,7 +13,7 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText editText;
     private String name;
-
+    boolean isChecked=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +28,16 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case (R.id.imageView):
             name = editText.getText().toString();
-            SharedPreferences setting = getSharedPreferences("texr", MODE_PRIVATE);
+            SharedPreferences setting = getSharedPreferences("text", MODE_PRIVATE);
             setting.edit()
                     .putString("nameId", name)
                     .commit();
+            Intent intent =new Intent(this,AgeActivity.class);
+            startActivityForResult(intent,11);
             setResult(RESULT_OK);
             finish();
             break;
         }
     }
-}
+    }
+
